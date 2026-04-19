@@ -5,7 +5,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Teacher-only sign up and unregister flows for activities
+- Teacher login backed by a JSON credentials file
 
 ## Getting Started
 
@@ -21,7 +22,9 @@ A super simple FastAPI application that allows students to view and sign up for 
    python app.py
    ```
 
-3. Open your browser and go to:
+3. Teacher credentials are stored in [src/teachers.json](src/teachers.json). Example accounts included for local testing are `ms-johnson` / `faculty123` and `mr-lee` / `advising456`.
+
+4. Open your browser and go to:
    - API documentation: http://localhost:8000/docs
    - Alternative documentation: http://localhost:8000/redoc
 
@@ -30,7 +33,11 @@ A super simple FastAPI application that allows students to view and sign up for 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| GET    | `/auth/session`                                                   | Get the current teacher login state                                 |
+| POST   | `/auth/login`                                                     | Log in a teacher and set the session cookie                         |
+| POST   | `/auth/logout`                                                    | Clear the teacher session cookie                                    |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Register a student for an activity as a teacher                     |
+| DELETE | `/activities/{activity_name}/unregister?email=student@mergington.edu` | Unregister a student from an activity as a teacher               |
 
 ## Data Model
 
@@ -48,3 +55,5 @@ The application uses a simple data model with meaningful identifiers:
    - Grade level
 
 All data is stored in memory, which means data will be reset when the server restarts.
+
+Teacher credentials are stored in a checked-in JSON file for this exercise, matching the constraint in issue #5.
