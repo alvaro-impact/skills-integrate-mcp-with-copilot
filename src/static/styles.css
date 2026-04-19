@@ -16,7 +16,6 @@ body {
 }
 
 header {
-  text-align: center;
   padding: 20px 0;
   margin-bottom: 30px;
   background-color: #1a237e;
@@ -24,8 +23,53 @@ header {
   border-radius: 5px;
 }
 
+.header-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+}
+
 header h1 {
   margin-bottom: 10px;
+}
+
+.account-menu {
+  position: relative;
+}
+
+.account-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.account-button:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.account-icon {
+  font-size: 18px;
+}
+
+.account-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 280px;
+  background-color: white;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  padding: 16px;
+  z-index: 10;
+}
+
+.session-status {
+  margin-bottom: 12px;
 }
 
 main {
@@ -125,6 +169,11 @@ section h3 {
   background-color: #ffebee;
 }
 
+.helper-text {
+  margin-bottom: 15px;
+  color: #555;
+}
+
 .participants-section p {
   color: #777;
   font-style: italic;
@@ -164,6 +213,59 @@ button:hover {
   background-color: #3949ab;
 }
 
+.secondary-button {
+  background-color: #eceff1;
+  color: #1a237e;
+}
+
+.secondary-button:hover {
+  background-color: #dfe5e8;
+}
+
+.icon-button {
+  background: none;
+  color: #1a237e;
+  font-size: 28px;
+  line-height: 1;
+  padding: 0;
+}
+
+.icon-button:hover {
+  background: none;
+  color: #3949ab;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 35, 126, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 420px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .message {
   margin-top: 20px;
   padding: 10px;
@@ -197,4 +299,19 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+}
+
+@media (max-width: 767px) {
+  .header-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .account-menu {
+    align-self: flex-end;
+  }
+
+  .account-panel {
+    width: min(280px, calc(100vw - 40px));
+  }
 }
